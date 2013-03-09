@@ -13,11 +13,12 @@ class CardsController < ApplicationController
   # GET /cards/1
   # GET /cards/1.json
   def show
-    @card = Card.find(params[:id])
+    @current_deck = Deck.find(params[:deck_id])
+    @card_in_deck = @current_deck.cards.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @card }
+      format.json { render json: @card_in_deck }
     end
   end
 
@@ -40,10 +41,11 @@ class CardsController < ApplicationController
   # POST /cards
   # POST /cards.json
   def create
-    @card = Card.new(params[:card])
+    @deck = Deck.find(params[:card][:deck_id])
+    @card_for_deck = @deck.cards.build(question: params[:card][:question], answer: params[:card][:answer])
 
     respond_to do |format|
-      if @card.save
+      if @card_for_deck.save
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
         format.json { render json: @card, status: :created, location: @card }
       else
@@ -71,12 +73,13 @@ class CardsController < ApplicationController
 
   # DELETE /cards/1
   # DELETE /cards/1.json
-  def destroy
-    @card = Card.find(params[:id])
-    @card.destroy
+  def delete_card 
+    @current_deck = Deck.find(params[:deck_id])
+    @card_in_deck = @current_deck.cards.find(params[:id])
+    @card_in_deck.destroy
 
     respond_to do |format|
-      format.html { redirect_to cards_url }
+      format.html { redirect_to @current_deck }
       format.json { head :no_content }
     end
   end

@@ -14,6 +14,7 @@
     <td><%= link_to 'Show', deck %></td>
     <td><%= link_to 'Edit', edit_deck_path(deck) %></td>
     <td><%= link_to 'Destroy', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Play deck', "/decks/#{deck.id}/play/#{deck.time}" %></td>
   </tr>
 <% end %>
 </table>

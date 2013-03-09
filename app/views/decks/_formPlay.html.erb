@@ -1,0 +1,11 @@
+<%= form_for :answer, :url => "/decks/#{@current_deck.id}/play/#{@current_card.time}" do |f| %>
+  <div class="field">
+    
+    <%= f.label :answer %>
+    <%= f.text_field :answer %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit 'Check answer' %>
+  </div>
+<% end %>

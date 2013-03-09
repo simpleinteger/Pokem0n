@@ -1,15 +1,20 @@
 Pokem0n::Application.routes.draw do
 
-  resources :decks
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  root to: 'cards#index'
-  resources :cards
+  root to: 'decks#index'
+  resources :decks, only: [:index, :show,:create, :edit,:new] do
+    resources :cards, only: [:show]
+    delete 'cards/:id' => 'cards#delete_card'
+    delete '' => 'decks#remove_deck'
+    put '' => 'decks#create_card'
+    get 'play/:time_id' => 'decks#play_deck'
+    post 'play/:time_id' => 'decks#check_answer'
+  end
+
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  # match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

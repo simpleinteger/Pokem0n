@@ -1,0 +1,18 @@
+<h1>Playing <%= @current_deck.name.capitalize %> Deck!</h1>
+<br>
+Time of Deck: <%= @current_deck.time %>
+<br>
+Present Card Time: <%= @current_card.time %>
+<br>
+Past Card Time: <%= @past_card_time %>
+<br>
+Text: <%= @text %>
+<br>
+
+
+
+<%= @current_card.question %>
+<%= render 'formPlay' %>
+
+<br>
+<%= link_to 'Back', decks_path %>

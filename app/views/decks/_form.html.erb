@@ -14,6 +14,7 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+    <%= f.hidden_field :time , :value => @deck.id.generation_time.to_i  %>
   </div>
   <div class="actions">
     <%= f.submit %>

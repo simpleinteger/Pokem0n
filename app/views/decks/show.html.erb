@@ -1,10 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @deck.name %>
+  <b>Deck Name:</b>
+  <%= @current_deck.name %>
+
+  <b>  Deck Size:</b>
+  <%= @cards_in_deck.size %>
+  
+  <b>  Deck Time:</b>
+  <%= @current_deck.time %>
+
 </p>
 
+<%= render 'formCards' %>
+<br>
 
-<%= link_to 'Edit', edit_deck_path(@deck) %> |
+<%= @cards_in_deck.each do |card| %>
+  <%= "Time: #{card.time}  " %>
+  <%= "Question: #{card.question} => " %>
+  <%= "Answer: #{card.answer}  " %>
+  <%= link_to 'show this card from this deck,  ', "/decks/#{@current_deck.id}/cards/#{card.id}" %>
+  <%= link_to 'delete this card from this deck', "/decks/#{@current_deck.id}/cards/#{card.id}", :method => :delete %> 
+
+<br>
+<% end %>
+
+<br>
+<%= link_to 'Edit', edit_deck_path(@current_deck) %> 
 <%= link_to 'Back', decks_path %>
