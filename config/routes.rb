@@ -10,7 +10,7 @@ Pokem0n::Application.routes.draw do
     delete '' => 'decks#remove_deck'
     put '' => 'decks#create_card'
     get 'play/:time_id' => 'decks#play_deck'
-    post 'play/:time_id' => 'decks#check_answer'
+    post 'play/:time_id/:time_id_old' => 'decks#check_answer'
   end
 
   # Sample of regular route:

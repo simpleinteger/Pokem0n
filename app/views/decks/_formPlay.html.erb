@@ -1,4 +1,4 @@
-<%= form_for :answer, :url => "/decks/#{@current_deck.id}/play/#{@current_card.time}" do |f| %>
+<%= form_for :answer, :url => "/decks/#{@current_deck.id}/play/#{@current_card.time}/#{@past_card_time}" do |f| %>
   <div class="field">
     
     <%= f.label :answer %>

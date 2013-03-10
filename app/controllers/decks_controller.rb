@@ -83,21 +83,40 @@ class DecksController < ApplicationController
       @text = 'card_time'
       #get the next card based on the next biggest card time.
       @current_card = @current_deck.cards.where(:time.gt => @past_card_time).first
+        #if there are no more cards redirect to decks
+        if @current_card.nil?
+           respond_to do |format|
+             format.html { redirect_to decks_path }
+             format.json { head :no_content }
+            end
+        end
     end
+
+
   end
 
   # check if the two stirngs are equal
   # in the future can expand check by using regexp
   def check_answer
     @current_deck = Deck.find(params[:deck_id])
-
-    respond_to do |format|
-      format.html { redirect_to "/decks/#{params[:deck_id]}/play/#{params[:time_id]}" }
-      #format.html { redirect_to "https://www.google.com/" }
-      format.json { head :no_content }
-    end
- 
+    @current_card = @current_deck.cards.find_by(time: params[:time_id])
    
+    # if answer submitted answer is correct
+    if @current_card.answer == params[:answer][:answer] 
+      respond_to do |format|
+        format.html { redirect_to "/decks/#{params[:deck_id]}/play/#{params[:time_id]}" }
+        format.json { head :no_content }
+      end
+
+    # if answer submitted answer is wrong 
+    else
+      respond_to do |format|
+        format.html { redirect_to "/decks/#{params[:deck_id]}/play/#{params[:time_id_old]}" }
+        format.json { head :no_content }
+      end
+
+    end
+
   end
   # DELETE /decks/1
   # DELETE /decks/1.json
