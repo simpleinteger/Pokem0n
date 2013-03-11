@@ -35,24 +35,11 @@ class CardsController < ApplicationController
 
   # GET /cards/1/edit
   def edit
-    @card = Card.find(params[:id])
   end
 
   # POST /cards
   # POST /cards.json
   def create
-    @deck = Deck.find(params[:card][:deck_id])
-    @card_for_deck = @deck.cards.build(question: params[:card][:question], answer: params[:card][:answer])
-
-    respond_to do |format|
-      if @card_for_deck.save
-        format.html { redirect_to @card, notice: 'Card was successfully created.' }
-        format.json { render json: @card, status: :created, location: @card }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @card.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PUT /cards/1

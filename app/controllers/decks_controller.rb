@@ -14,7 +14,7 @@ class DecksController < ApplicationController
   # GET /decks/1.json
   def show
     @current_deck = Deck.find(params[:id])
-    @new_card = Card.new
+    @current_card = Card.new
     @cards_in_deck = @current_deck.cards
     
 
@@ -56,18 +56,30 @@ class DecksController < ApplicationController
   end
 
    
-  # update deck with created card for current deck
+  # create/update deck with created card for current deck
   def create_card 
     @deck = Deck.find(params[:deck_id])
-    respond_to do |format|
-      if @deck.cards.create(params[:deck][:card])
-        format.html { redirect_to @deck, notice: "Card was successfully added to Deck #{@deck.name}." }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @deck.errors, status: :unprocessable_entity }
-      end
+    
+    # TODO optimize if i should seprate the updating of a card and editing of a card
+    # if the card is in the deck that means we have already created it and we want to update the card,
+    # if not then we have not created the card yet
+    if @current_card = @deck.cards.where(id: params[:deck][:card][:card_id]).first
+       @current_card.update_attributes(params[:deck][:card])
+       respond_to do |format|
+          format.html { redirect_to @deck, notice: "Card was successfully UPDATED to Deck #{@deck.name}." }
+       end
+
+    # create the card
+    else @deck.cards.create(params[:deck][:card])
+         respond_to do |format|
+          format.html { redirect_to @deck, notice: "Card was successfully ADDED to Deck #{@deck.name}." }
+          end
     end
+  end
+
+  def edit_card
+    @current_deck = Deck.find(params[:deck_id])
+    @current_card = @current_deck.cards.find(params[:card_id])
   end
 
   # play the deck first using the deck time to get the first card
@@ -119,7 +131,7 @@ class DecksController < ApplicationController
     # if answer submitted answer is wrong 
     else
       respond_to do |format|
-        format.html { redirect_to "/decks/#{params[:deck_id]}/play/#{params[:time_id_old]}" }
+        format.html { redirect_to "/decks/#{params[:deck_id]}/play/#{params[:time_id_old]}", notice: "Wrong" }
         format.json { head :no_content }
       end
 

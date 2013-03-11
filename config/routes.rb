@@ -5,7 +5,7 @@ Pokem0n::Application.routes.draw do
 
   root to: 'decks#index'
   resources :decks, only: [:index, :show,:create, :edit,:new] do
-    resources :cards, only: [:show]
+    get 'card/edit/:card_id' => 'decks#edit_card'
     delete 'cards/:id' => 'cards#delete_card'
     delete '' => 'decks#remove_deck'
     put '' => 'decks#create_card'
