@@ -1,10 +1,10 @@
-<%= form_for(@deck) do |f| %>
-  <% if @deck.errors.any? %>
+<%= form_for @current_deck, url: "/decks/#{@current_deck.id}/edit" do |f| %>
+  <% if @current_deck.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
+      <h2><%= pluralize(@current_deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
 
       <ul>
-      <% @deck.errors.full_messages.each do |msg| %>
+      <% @current_deck.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -14,7 +14,11 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-    <%= f.hidden_field :time , :value => @deck.id.generation_time.to_i  %>
+
+    <!--used for editing deck name -->
+    <%= f.hidden_field :deck_id , :value => @current_deck.id %>
+    <!--used for starting the first card select -->
+    <%= f.hidden_field :time , :value => @current_deck.id.generation_time.to_i  %>
   </div>
   <div class="actions">
     <%= f.submit %>

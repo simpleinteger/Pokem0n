@@ -27,7 +27,7 @@ class DecksController < ApplicationController
   # GET /decks/new
   # GET /decks/new.json
   def new
-    @deck = Deck.new
+    @current_deck = Deck.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,21 +36,27 @@ class DecksController < ApplicationController
   end
 
   # GET /decks/1/edit
+  # not used
   def edit
-    @deck = Deck.find(params[:id])
+    @current_deck = Deck.find(params[:id])
   end
 
   # POST /decks
   # POST /decks.json
-  def create
-    @deck = Deck.new(params[:deck])
+  def create_deck
     respond_to do |format|
-      if @deck.save
-        format.html { redirect_to @deck, notice: 'Deck was successfully created.' }
-        format.json { render json: @deck, status: :created, location: @deck }
+     #update deck name
+      if @current_deck = Deck.where(id: params[:deck][:deck_id]).first
+        @current_deck.update_attributes(name: params[:deck][:name])
+        format.html { redirect_to @current_deck, notice: 'Deck was successfully updated.' }
+     #create new deck
+      elsif @current_deck = Deck.new(params[:deck])
+        @current_deck.save
+        format.html { redirect_to @current_deck, notice: 'Deck was successfully updated.' }
+     #redirect to create a new card if validations dont work
       else
         format.html { render action: "new" }
-        format.json { render json: @deck.errors, status: :unprocessable_entity }
+        format.json { render json: @current_deck.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,21 +64,21 @@ class DecksController < ApplicationController
    
   # create/update deck with created card for current deck
   def create_card 
-    @deck = Deck.find(params[:deck_id])
+    @current_deck = Deck.find(params[:deck_id])
     
     # TODO optimize if i should seprate the updating of a card and editing of a card
     # if the card is in the deck that means we have already created it and we want to update the card,
     # if not then we have not created the card yet
-    if @current_card = @deck.cards.where(id: params[:deck][:card][:card_id]).first
+    if @current_card = @current_deck.cards.where(id: params[:deck][:card][:card_id]).first
        @current_card.update_attributes(params[:deck][:card])
        respond_to do |format|
-          format.html { redirect_to @deck, notice: "Card was successfully UPDATED to Deck #{@deck.name}." }
+          format.html { redirect_to @current_deck, notice: "Card was successfully UPDATED to Deck #{@current_deck.name}." }
        end
 
     # create the card
-    else @deck.cards.create(params[:deck][:card])
+    else @current_deck.cards.create(params[:deck][:card])
          respond_to do |format|
-          format.html { redirect_to @deck, notice: "Card was successfully ADDED to Deck #{@deck.name}." }
+          format.html { redirect_to @current_deck, notice: "Card was successfully ADDED to Deck #{@current_deck.name}." }
           end
     end
   end
