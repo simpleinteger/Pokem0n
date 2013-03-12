@@ -15,12 +15,11 @@
 <%= @cards_in_deck.each do |card| %>
   <%= "Question: #{card.question} => " %>
   <%= "Answer: #{card.answer}  " %>
-  <%= link_to 'edit this card from this deck', "/decks/#{@current_deck.id}/card/edit/#{card.id}" %>
-  <%= link_to 'delete this card from this deck', "/decks/#{@current_deck.id}/cards/#{card.id}", :method => :delete %> 
+  <%= link_to 'edit card', "/decks/#{@current_deck.id}/card/edit/#{card.id}" %>
+  <%= link_to 'delete card', "/decks/#{@current_deck.id}/cards/#{card.id}", :method => :delete %> 
 
 <br>
 <% end %>
 
 <br>
-<%= link_to 'Edit', edit_deck_path(@current_deck) %> 
 <%= link_to 'Back', decks_path %>
