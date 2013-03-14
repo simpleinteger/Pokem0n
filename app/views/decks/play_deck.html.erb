@@ -12,8 +12,7 @@ Text: <%= @text %>
 <b><%= @current_card.question %></b>
 <%= render 'formPlay' %>
 
-<%= @current_card.answer %>
-
+<div class="showhim">Show Answer<div class="showme"> <%= @current_card.answer %> </div></div>
 
 <br>
 <%= link_to 'Back', decks_path %>
