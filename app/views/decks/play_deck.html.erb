@@ -8,9 +8,12 @@ Past Card Time: <%= @past_card_time %>
 <br>
 Text: <%= @text %>
 <br>
-
-<%= @current_card.question %>
+<br>
+<b><%= @current_card.question %></b>
 <%= render 'formPlay' %>
+
+<%= @current_card.answer %>
+
 
 <br>
 <%= link_to 'Back', decks_path %>

@@ -15,7 +15,7 @@
     <%= f.fields_for @current_card  do |c| %>
     
     <%= c.label :question %>
-    <%= c.text_field :question %>
+    <%= c.text_field :question, autofocus: :true %>
     <br>
     <%= c.label :answer %>
     <%= c.text_field :answer %>
