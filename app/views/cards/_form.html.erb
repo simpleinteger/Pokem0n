@@ -1,10 +1,10 @@
-<%= form_for(@card) do |f| %>
-  <% if @card.errors.any? %>
+<%= form_for [@current_deck, @current_card] do |f| %>
+  <% if @current_card.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
+      <h2><%= pluralize(@current_card.errors.count, "error") %> prohibited this card from being saved:</h2>
 
       <ul>
-      <% @card.errors.full_messages.each do |msg| %>
+      <% @current_card.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -12,12 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :question %><br />
-    <%= f.text_field :question %>
-  </div>
-  <div class="field">
-    <%= f.label :answer %><br />
+
+    <%= f.label :question %>
+    <%= f.text_field :question, autofocus: :true %>
+    <span id="notice"><%= notice %></span>
+    <br>
+    <%= f.label :answer %>
     <%= f.text_field :answer %>
+
+    <%= f.hidden_field :time , :value => @current_card.id.generation_time.to_i  %>
+
   </div>
   <div class="actions">
     <%= f.submit %>

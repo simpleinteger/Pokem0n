@@ -4,14 +4,9 @@ Pokem0n::Application.routes.draw do
   # first created -> highest priority.
 
   root to: 'decks#index'
-  resources :decks, only: [:index, :show, :edit,:new] do
-    get 'card/edit/:card_id' => 'decks#edit_card'
-    delete 'cards/:id' => 'cards#delete_card'
-    delete '' => 'decks#remove_deck'
-    put '' => 'decks#create_card'
- #TODO fix redundance here with create_deck method
-    post 'edit' => 'decks#create_deck'
-    put 'edit' => 'decks#create_deck'
+  resources :decks, only: [:index, :new, :create ,:edit, :update, :destroy] do
+    resources :cards, only: [:new, :create, :edit, :update, :destroy]
+    # custom routes to play the deck
     get 'play/:time_id' => 'decks#play_deck'
     post 'play/:time_id/:time_id_old' => 'decks#check_answer'
   end

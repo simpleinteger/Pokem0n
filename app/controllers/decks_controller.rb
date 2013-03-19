@@ -10,82 +10,46 @@ class DecksController < ApplicationController
     end
   end
 
-  # GET /decks/1
-  # GET /decks/1.json
-  def show
-    @current_deck = Deck.find(params[:id])
-    @current_card = Card.new
-    @cards_in_deck = @current_deck.cards
-    
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @deck }
-    end
-  end
-
   # GET /decks/new
   # GET /decks/new.json
   def new
     @current_deck = Deck.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @deck }
-    end
-  end
-
-  # GET /decks/1/edit
-  # not used
-  def edit
-    @current_deck = Deck.find(params[:id])
   end
 
   # POST /decks
-  # POST /decks.json
-  def create_deck
+  # Create a new deck 
+  def create
+    @current_deck = Deck.new(params[:deck])
     respond_to do |format|
-     #update deck name
-      if @current_deck = Deck.where(id: params[:deck][:deck_id]).first
-        @current_deck.update_attributes(name: params[:deck][:name])
-        format.html { redirect_to @current_deck, notice: 'Deck was successfully updated.' }
-     #create new deck
-      elsif @current_deck = Deck.new(params[:deck])
-        @current_deck.save
-        format.html { redirect_to @current_deck, notice: 'Deck was successfully updated.' }
-     #redirect to create a new card if validations dont work
+      if @current_deck.save
+        format.html { redirect_to decks_url, notice: "Deck Created: #{@current_deck.name}" }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @current_deck.errors, status: :unprocessable_entity }
       end
     end
   end
 
-   
-  # create/update deck with created card for current deck
-  def create_card 
-    @current_deck = Deck.find(params[:deck_id])
-    
-    # TODO optimize if i should seprate the updating of a card and editing of a card
-    # if the card is in the deck that means we have already created it and we want to update the card,
-    # if not then we have not created the card yet
-    if @current_card = @current_deck.cards.where(id: params[:deck][:card][:card_id]).first
-       @current_card.update_attributes(params[:deck][:card])
-       respond_to do |format|
-          format.html { redirect_to @current_deck, notice: "Card was successfully UPDATED to Deck #{@current_deck.name}." }
-       end
-
-    # create the card
-    else @current_deck.cards.create(params[:deck][:card])
-         respond_to do |format|
-          format.html { redirect_to @current_deck, notice: "Card was successfully ADDED to Deck #{@current_deck.name}." }
-          end
-    end
+  # GET /decks/:id/edit
+  # View the edit page
+  # form in here links to the update method route 
+  def edit
+    @current_deck = Deck.find(params[:id])
   end
 
-  def edit_card
-    @current_deck = Deck.find(params[:deck_id])
-    @current_card = @current_deck.cards.find(params[:card_id])
+  # PUT /decks/:id
+  # update the deck name
+  # redirects to index page 
+  def update
+    @current_deck = Deck.find(params[:id])
+
+    respond_to do |format|
+      if @current_deck.update_attribute(:name, params[:deck][:name])
+        format.html { redirect_to root_path, notice: 'Deck Name Updated!' }
+      else
+        format.html { render action: "update" }
+      end
+    end
   end
 
   # play the deck first using the deck time to get the first card
@@ -146,12 +110,12 @@ class DecksController < ApplicationController
   end
   # DELETE /decks/1
   # DELETE /decks/1.json
-  def remove_deck 
-    @deck = Deck.find(params[:deck_id])
+  def destroy
+    @deck = Deck.find(params[:id])
     @deck.destroy
 
     respond_to do |format|
-      format.html { redirect_to decks_url }
+      format.html { redirect_to decks_path }
       format.json { head :no_content }
     end
   end
