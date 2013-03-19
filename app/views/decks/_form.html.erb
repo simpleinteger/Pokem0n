@@ -16,9 +16,7 @@
     <%= f.text_field :name %>
 
     <!--used for starting the first card select -->
-  <%= if(@current_deck.time.nil?) %>
     <%= f.hidden_field :time , :value => @current_deck.id.generation_time.to_i  %>
-  <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
