@@ -1,19 +1,13 @@
 Pokem0n::Application.routes.draw do
-
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   root to: 'decks#index'
   resources :decks, only: [:index, :new, :create ,:edit, :update, :destroy] do
     resources :cards, only: [:new, :create, :edit, :update, :destroy] do
-      #get 'game/play' => 'game#play'
-      #get 'game/check_answer' => 'game#check_answer'
+      get 'game/play' => 'game#play'
+      post 'game/check_answer' => 'game#check_answer'
     end
-    # custom routes to play the deck
-    get 'play/:time_id' => 'game#play'
-    post 'play/:time_id/:time_id_old' => 'game#check_answer'
   end
 
   # Sample of regular route:

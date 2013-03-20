@@ -11,3 +11,12 @@
  *= require_self
  *= require_tree .
  */
+
+.show_inside{
+  display: none;
+}
+
+.show_outside:hover .show_inside{
+  display : block;
+}
+

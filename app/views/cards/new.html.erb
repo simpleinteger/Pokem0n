@@ -1,3 +1,4 @@
+<div id='new_card'>
 <h1>::Add Card::<%= @current_deck.name.capitalize %> Deck::</h1>
 <p>
 <b>Deck Name:</b>
@@ -11,10 +12,10 @@
 <br>
 <br>
 <%= @card_list.each do |card| %>
-  <%= link_to 'edit', edit_deck_card_path(@current_deck.id, card.id) %>
+  <%= link_to 'edit', edit_deck_card_path(@current_deck.id, card.id), target: '_blank' %>
   <%= link_to 'destroy', deck_card_path(@current_deck.id, card.id), method: :delete %> 
   <%= "Question: #{card.question} =>  Answer: #{card.answer}  " %>
 <br>
 <% end %>
 <br>
-
+</div>

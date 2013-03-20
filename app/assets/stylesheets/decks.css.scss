@@ -1,10 +1,27 @@
 // Place all the styles related to the decks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.showme{
-display: none;
+#index{
+  width: 500px;
+  text-align: center;
+  padding-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.showhim:hover .showme{
-display : block;
+
+#new_deck{
+  width: 300px;
+  text-align: center;
+  padding-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#edit_deck{
+  width: 300px;
+  text-align: center;
+  padding-top: 250px;
+  margin-left: auto;
+  margin-right: auto;
 }
 

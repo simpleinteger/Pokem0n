@@ -1,18 +1,17 @@
+<div id="index">
 <p id="notice"><%= notice %></p>
-<h1>Listing decks</h1>
+<h1>Decks</h1>
 
 <table>
-  <tr>
-    <th>Deck List</th>
-  </tr>
-
 <% @decks.each do |deck| %>
   <tr>
-    <td><%= deck.name %></td>
-    <td><%= link_to 'add card', new_deck_card_path(deck.id) %></td>
-    <td><%= link_to 'Edit name', edit_deck_path(deck) %></td>
-    <td><%= link_to 'Destroy deck', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= link_to 'Play deck', "/decks/#{deck.id}/play/#{deck.time}" %></td>
+
+      <td><%= deck.name %></td>
+        <td><%= link_to 'add card', new_deck_card_path(deck.id) %></td>
+        <td><%= link_to 'Edit name', edit_deck_path(deck) %></td>
+        <td><%= link_to 'Destroy deck', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Play deck', deck_card_game_play_path(deck.id,'7c55f2000000000000000000') %></td>
+
   </tr>
 <% end %>
 </table>
@@ -20,3 +19,4 @@
 <br />
 
 <%= link_to 'New Deck', new_deck_path %>
+<div>

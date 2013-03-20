@@ -1,11 +1,9 @@
-<%= form_for :answer, :url => "/decks/#{@current_deck.id}/play/#{@current_card.time}/#{@past_card_time}" do |f| %>
+<%= form_for :reply, url: deck_card_game_check_answer_path(@current_deck.id,@current_card.id)   do |f| %>
   <div class="field">
     
-    <%= f.label :answer %>
-    <%= f.text_field :answer, autofocus: :true%><span id="notice"><%= notice %></span>
+    <%= f.text_field :answer, autofocus: :true%>
 
   </div>
   <div class="actions">
-    <%= f.submit 'Check answer' %>
   </div>
 <% end %>
