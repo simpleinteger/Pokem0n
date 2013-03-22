@@ -5,6 +5,25 @@
 #play_area{ 
   width: auto ;
   text-align: center; 
-  padding-top: 250px;
+  padding-top: 100px;
   margin: auto ;
+  position: relative;
 } 
+
+.show_outside_answer{ 
+  position: absolute;
+  right: 800px;
+  bottom: 180px;
+
+}
+.show_outside_answer:hover .show_inside{
+  display: block;
+  float: left;
+}
+
+.show_inside{
+  display: none;
+  position: absolute;
+  left: 290px;
+}
+
