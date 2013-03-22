@@ -12,8 +12,8 @@
 <br>
 <br>
 <%= @card_list.each do |card| %>
-  <%= link_to 'edit', edit_deck_card_path(@current_deck.id, card.id), target: '_blank' %>
-  <%= link_to 'destroy', deck_card_path(@current_deck.id, card.id), method: :delete %> 
+  <%= link_to 'Edit', edit_deck_card_path(@current_deck.id, card.id), target: '_blank' %>
+  <%= link_to 'Destroy', deck_card_path(@current_deck.id, card.id), method: :delete %> 
   <%= "Question: #{card.question} =>  Answer: #{card.answer}  " %>
 <br>
 <% end %>

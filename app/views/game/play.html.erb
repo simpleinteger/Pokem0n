@@ -1,7 +1,7 @@
 <div id='play_area'>
   <b><%= @current_card.question %></b>
 
-  <%= render 'formPlay' %>
+  <%= render 'form' %>
 
   <div class="show_outside">
     Answer
@@ -14,5 +14,5 @@
 <br>
 <br>
 <%= link_to 'Back', decks_path %>
-<%= link_to 'Edit', edit_deck_card_path(@current_deck.id,@current_card.id), target: '_blank' %>
+<%= link_to 'Edit', edit_deck_card_path(@current_deck.id,@current_card.id, view: 'play', past_card_id: @past_card_id) %>
 </div>

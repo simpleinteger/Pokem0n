@@ -2,10 +2,10 @@ class GameController < ApplicationController
 
   def play
       @current_deck = Deck.find(params[:deck_id])
-      @current_card_id = params[:card_id]
+      @past_card_id = params[:card_id]
 
     # if we are just starting the card id will be 0 so we start on the first card
-    if (@current_card_id == '7c55f2000000000000000000')
+    if (@past_card_id == '7c55f2000000000000000000')
       #TODO @text = 'first card'
       
       # if there are no card in the deck then redirect to page deck#index
@@ -19,10 +19,10 @@ class GameController < ApplicationController
     else
       #TODO @text = 'next card'
       #making object_id from cards string version of the object id because params only returns s       tings which allows us to compare object ids in mongodb
-      @current_object_id = Moped::BSON::ObjectId.from_string(@current_card_id)
+      @past_object_id = Moped::BSON::ObjectId.from_string(@past_card_id)
 
       #get the next card based on the next biggest id 
-      if (@current_card = @current_deck.cards.where(:id.gt => @current_object_id).first).nil?
+      if (@current_card = @current_deck.cards.where(:id.gt => @past_object_id).first).nil?
         #if there are no more cards redirect to decks indexs and display message
         respond_to do |format|
           format.html { redirect_to decks_path, notice: 'You have completed the deck'}

@@ -7,10 +7,10 @@
   <tr>
 
       <td><%= deck.name %></td>
-        <td><%= link_to 'add card', new_deck_card_path(deck.id) %></td>
-        <td><%= link_to 'Edit name', edit_deck_path(deck) %></td>
-        <td><%= link_to 'Destroy deck', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Play deck', deck_card_game_play_path(deck.id,'7c55f2000000000000000000') %></td>
+        <td><%= link_to 'Add Cards', new_deck_card_path(deck.id) %></td>
+        <td><%= link_to 'Edit Name', edit_deck_path(deck) %></td>
+        <td><%= link_to 'Destroy', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Play', deck_card_game_play_path(deck.id,'7c55f2000000000000000000') %></td>
 
   </tr>
 <% end %>

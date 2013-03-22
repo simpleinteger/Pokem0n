@@ -20,6 +20,10 @@
     <%= f.text_field :answer %>
 
     <%= f.hidden_field :time , :value => @current_card.id.generation_time.to_i  %>
+    <%= fields_for :addon do  |hidden| %>
+    <%= hidden.hidden_field(:past_view , value:  @past_view) %> 
+    <%= hidden.hidden_field(:past_card_id , value:  @past_card_id) %> 
+    <% end %>
 
   </div>
   <div class="actions">
