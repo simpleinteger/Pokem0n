@@ -1,4 +1,4 @@
-<%= form_for :reply, url: deck_card_game_check_answer_path(@current_deck.id,@current_card.id)   do |f| %>
+<%= form_for :reply, url: deck_card_game_check_answer_path(@current_deck.id,@current_card.id, past_card_id: @past_card_id)   do |f| %>
   <div class="field">
     
     <%= f.text_field :answer, autofocus: :true%>

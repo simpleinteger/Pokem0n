@@ -36,7 +36,6 @@ class GameController < ApplicationController
   def check_answer
     @current_deck = Deck.find(params[:deck_id])
     @current_card = @current_deck.cards.find(params[:card_id])
-
     respond_to do |format|
      # if answer submitted answer is correct
       if @current_card.answer == params[:reply][:answer]
@@ -45,7 +44,7 @@ class GameController < ApplicationController
 
       # if answer submitted is wrong go back to original question 
       else
-        @text = :wrong
+        @past_card_id = params[:past_card_id]
         format.html { render :play }
         format.json { head :no_content }
       end
