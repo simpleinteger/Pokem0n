@@ -40,7 +40,9 @@ class CardsController < ApplicationController
 
     respond_to do |format|
       if @current_card.update_attributes(params[:card])
-        if params[:addon][:past_view] == "play"
+
+        # determine where to redirect to the play area or the create cards area
+        if params[:addon][:past_view] == "play" 
           format.html { redirect_to deck_card_game_play_path(@current_deck,params[:addon][:past_card_id]), notice: 'Card Updated' }
         else
           format.html { redirect_to new_deck_card_path(@current_deck), notice: 'Card Updated' }
