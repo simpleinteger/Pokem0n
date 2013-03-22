@@ -11,6 +11,7 @@
 <%= link_to 'Back', decks_path %>
 <br>
 <br>
+</div>
 <%= @card_list.each do |card| %>
   <%= link_to 'Edit', edit_deck_card_path(@current_deck.id, card.id), target: '_blank' %>
   <%= link_to 'Destroy', deck_card_path(@current_deck.id, card.id), method: :delete %> 
@@ -18,4 +19,3 @@
 <br>
 <% end %>
 <br>
-</div>
