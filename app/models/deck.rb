@@ -4,5 +4,5 @@ class Deck
   embeds_many :cards
   embeds_many :plts
   attr_accessible :name
-  accepts_nested_attributes_for :cards, :plts
+  accepts_nested_attributes_for :cards
 end
