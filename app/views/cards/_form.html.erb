@@ -15,11 +15,11 @@
 
     <%= f.label 'Q:' %>
     <br>
-    <%= f.text_area :question, autofocus: :true, size: '30x10'  %>
+    <%= f.text_area :question, autofocus: :true, size: '45x15'  %>
     <br>
     <%= f.label 'A:' %>
     <br>
-    <%= f.text_area :answer, size: '30x10' %>
+    <%= f.text_area :answer, size: '45x15' %>
 
     <%= f.hidden_field :time , :value => @current_card.id.generation_time.to_i  %>
     <%= fields_for :addon do  |hidden| %>
@@ -29,6 +29,6 @@
 
   </div>
   <div class="actions">
-    <%= f.submit "Add"%>
+    <%= f.submit "Update"%>
   </div>
 <% end %>

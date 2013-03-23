@@ -18,12 +18,12 @@
 }
 .show_outside_answer:hover .show_inside{
   display: block;
-  float: left;
 }
 
 .show_inside{
   display: none;
   position: absolute;
   left: 290px;
+  top: 30px;
 }
 

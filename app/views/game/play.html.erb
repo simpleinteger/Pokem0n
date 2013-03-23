@@ -1,7 +1,7 @@
 <div id='play_area'>
   Question:
   <br>
-  <%= text_area_tag :question_ro, @current_card.question, size: '30x12', readonly: 'true' %> 
+  <%= text_area_tag :question_ro, @current_card.question, size: '45x15', readonly: 'true' %> 
   <br>
   <br>
   <%= render 'form' %>
@@ -9,7 +9,7 @@
 <div class="show_outside_answer">
     Answer
     <div class="show_inside"> 
-      <%= text_area_tag :question_ro, @current_card.answer, size: '30x12', readonly: 'true' %> 
+      <%= text_area_tag :question_ro, @current_card.answer, size: '45x15', readonly: 'true' %> 
     </div>
   </div>
 
