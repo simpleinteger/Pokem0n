@@ -1,5 +1,7 @@
 class PlT
   include Mongoid::Document
-  field :time, type: Start,
-  field :time, type: Duration
+  field :s, as: :start, type: Time
+  field :d, as: :duration, type: Time 
+  attr_accessible :start, :duration
+  embedded_in :deck
 end
