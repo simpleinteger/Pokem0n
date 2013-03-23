@@ -7,7 +7,8 @@ class GameController < ApplicationController
     # if we are just starting the card id will be 0 so we start on the first card
     if (@past_card_id == '7c55f2000000000000000000')
       #TODO @text = 'first card'
-      
+      # start recording play time
+        @current_deck.plts.create(start: Time.now)      
       # if there are no card in the deck then redirect to page deck#index
       if (@current_card = @current_deck.cards.first).nil?
         respond_to do |format|
@@ -24,8 +25,15 @@ class GameController < ApplicationController
       #get the next card based on the next biggest id 
       if (@current_card = @current_deck.cards.where(:id.gt => @past_object_id).first).nil?
         #if there are no more cards redirect to decks indexs and display message
+        
+        # and set the duration time that it took to finish the deck in min
+          
+          last_plt  = @current_deck.plts.last
+          # converstion to get time in mins when subtracting two objects (time diff*24*60)
+          last_plt.update_attribute(:duration, ((Time.now-last_plt.start)/60).to_i) 
+
         respond_to do |format|
-          format.html { redirect_to decks_path, notice: 'You have completed the deck'}
+          format.html { redirect_to decks_path, notice: "COMPLETED IN: #{last_plt.duration}"}
           format.json { head :no_content }
         end
       end
