@@ -59,4 +59,9 @@ class GameController < ApplicationController
     end
   end
 
+  def history
+    @current_deck = Deck.find(params[:deck_id])
+    @play_times = @current_deck.plts
+  end
+
 end

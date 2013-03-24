@@ -8,6 +8,8 @@ Pokem0n::Application.routes.draw do
       get 'game/play' => 'game#play'
       post 'game/check_answer' => 'game#check_answer'
     end
+
+     get 'game/history' => 'game#history'
   end
 
   # Sample of regular route:
