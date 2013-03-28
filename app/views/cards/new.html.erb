@@ -13,7 +13,7 @@
 <br>
 </div>
 <%= @card_list.each do |card| %>
-  <%= link_to 'Edit', edit_deck_card_path(@current_deck.id, card.id), target: '_blank' %>
+  <%= link_to 'Edit', edit_deck_card_path(@current_deck.id, card.id) %>
   <%= link_to 'Destroy', deck_card_path(@current_deck.id, card.id), method: :delete %> 
   <%= link_to 'Play', deck_card_game_play_path(@current_deck.id, card.id) %>
   <%= "Question: #{card.question} =>  Answer: #{card.answer}  " %>
