@@ -5,6 +5,10 @@ Pokem0n::Application.routes.draw do
   # first created -> highest priority.
 
   root to: 'base#home'
+
+  namespace :user do
+    root :to => "users#show"
+  end
   resources :decks, only: [:index, :new, :create ,:edit, :update, :destroy] do
     resources :cards, only: [:new, :create, :edit, :update, :destroy] do
       get 'game/play' => 'game#play'

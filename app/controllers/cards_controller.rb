@@ -1,5 +1,7 @@
 class CardsController < ApplicationController
- 
+  # Require user to be logged in
+  before_filter :authenticate_user!
+
   # GET /cards/new
   # GET /cards/new.json
   # Create a new card in the deck

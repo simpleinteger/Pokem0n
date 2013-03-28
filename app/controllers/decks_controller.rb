@@ -1,4 +1,7 @@
 class DecksController < ApplicationController
+  # Require user to be logged in
+  before_filter :authenticate_user!
+
   # GET /decks
   # GET /decks.json
   def index
@@ -19,10 +22,11 @@ class DecksController < ApplicationController
   # POST /decks
   # Create a new deck 
   def create
-    @current_deck = Deck.new(params[:deck])
+    @current_user = User.find(current_user.id)
+    @current_deck = @current_user.decks.new(params[:deck])
     respond_to do |format|
       if @current_deck.save
-        format.html { redirect_to decks_url, notice: "Deck Created: #{@current_deck.name}" }
+        format.html { redirect_to user_root_path, notice: "Deck Created: #{@current_deck.name}" }
       else
         format.html { render :new }
         format.json { render json: @current_deck.errors, status: :unprocessable_entity }
@@ -45,7 +49,7 @@ class DecksController < ApplicationController
 
     respond_to do |format|
       if @current_deck.update_attribute(:name, params[:deck][:name])
-        format.html { redirect_to root_path, notice: 'Deck Name Updated!' }
+        format.html { redirect_to user_root_path, notice: 'Deck Name Updated!' }
       else
         format.html { render action: "update" }
       end
@@ -59,7 +63,7 @@ class DecksController < ApplicationController
     @deck.destroy
 
     respond_to do |format|
-      format.html { redirect_to decks_path }
+      format.html { redirect_to user_root_path }
       format.json { head :no_content }
     end
   end

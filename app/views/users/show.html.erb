@@ -1,0 +1,25 @@
+<div id="index">
+<h1> User Home Page </h1>
+<br>
+
+<p> My Decks </p>
+<table>
+  <% @current_decks.each do |deck| %>
+    <tr>
+      <td><%= deck.name %></td>
+        <td><%= link_to 'Add Cards', new_deck_card_path(deck.id) %></td>
+        <td><%= link_to 'Edit Name', edit_deck_path(deck) %></td>
+        <td><%= link_to 'Destroy', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Play', deck_card_game_play_path(deck.id,'7c55f2000000000000000000') %></td>
+        <td><%= link_to 'History', deck_game_history_path(deck.id) %></td>
+        <td> last duration: <%= p deck.plts.last.duration if deck.plts.last != nil %> min </td>
+    </tr> 
+  <% end %>
+</table>
+
+
+<br>
+<%= link_to 'Create Deck', new_deck_path %>
+<br>
+<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+</div>

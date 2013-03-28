@@ -8,11 +8,11 @@
 </p>
 
 <%= render 'form' %>
-<%= link_to 'Back', decks_path %>
+<%= link_to 'Back', user_root_path %>
 <br>
 <br>
 </div>
-<%= @card_list.each do |card| %>
+<% @card_list.reverse_each do |card| %>
   <%= link_to 'Edit', edit_deck_card_path(@current_deck.id, card.id) %>
   <%= link_to 'Destroy', deck_card_path(@current_deck.id, card.id), method: :delete %> 
   <%= link_to 'Play', deck_card_game_play_path(@current_deck.id, card.id) %>
