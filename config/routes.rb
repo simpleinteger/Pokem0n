@@ -1,8 +1,10 @@
 Pokem0n::Application.routes.draw do
+  devise_for :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  root to: 'decks#index'
+  root to: 'base#home'
   resources :decks, only: [:index, :new, :create ,:edit, :update, :destroy] do
     resources :cards, only: [:new, :create, :edit, :update, :destroy] do
       get 'game/play' => 'game#play'
