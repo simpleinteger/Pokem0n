@@ -73,7 +73,7 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
-    diff-lcs (1.2.1)
+    diff-lcs (1.2.2)
     email_spec (1.4.0)
       launchy (~> 2.1)
       mail (~> 2.2)
@@ -105,7 +105,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.21)
+    mime-types (1.22)
     mongoid (3.1.2)
       activemodel (~> 3.2)
       moped (~> 1.4.2)
@@ -183,7 +183,7 @@ GEM
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
-    thor (0.18.0)
+    thor (0.18.1)
     tilt (1.3.6)
     treetop (1.4.12)
       polyglot
