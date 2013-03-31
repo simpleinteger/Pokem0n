@@ -11,21 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-.show_inside{
-  display: none;
-}
-
-.show_outside:hover .show_inside{
-  display : block;
-}
-
-body{
-  width: 600px;
-  text-align: center;
-  padding-top: ;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-

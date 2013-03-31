@@ -1,0 +1,22 @@
+@import "bootstrap";
+@import "bootstrap-responsive";
+body { 
+  padding-top: 200px; 
+  width: 550px; 
+  margin: 0 auto;
+  text-align:center
+}
+table {
+  margin: auto;
+  text-align: left;
+}
+
+textarea{
+  display: block;
+  width: 400px;
+  height: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 70px;
+}
+

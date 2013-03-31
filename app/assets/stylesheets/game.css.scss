@@ -2,18 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#play_area{ 
-  width: auto ;
-  text-align: center; 
-  padding-top: 50px;
-  margin: auto ;
-  position: relative;
-} 
+body{ 
+  padding-top: 200px;
+}
 
 .show_outside_answer{ 
-  position: absolute;
-  right: 850px;
-  bottom: 320px;
+  display: inline;
+}
+
+.show_outside_answer{ 
 
 }
 .show_outside_answer:hover .show_inside{
@@ -22,8 +19,5 @@
 
 .show_inside{
   display: none;
-  position: absolute;
-  left: 400px;
-  top: -5px;
 }
 

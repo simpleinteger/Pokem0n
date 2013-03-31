@@ -12,7 +12,7 @@ class GameController < ApplicationController
       # if there are no card in the deck then redirect to page deck#index
       if (@current_card = @current_deck.cards.first).nil?
         respond_to do |format|
-          format.html { redirect_to decks_path, notice: 'Deck does not have any cards'}
+          format.html { redirect_to user_root_path, notice: 'Deck does not have any cards'}
           format.json { head :no_content }
         end
       end
@@ -33,7 +33,7 @@ class GameController < ApplicationController
           last_plt.update_attribute(:duration, ((Time.now-last_plt.start)/60).to_i) 
 
         respond_to do |format|
-          format.html { redirect_to decks_path, notice: "COMPLETED IN: #{last_plt.duration}"}
+          format.html { redirect_to user_root_path, notice: "COMPLETED IN: #{last_plt.duration}"}
           format.json { head :no_content }
         end
       end

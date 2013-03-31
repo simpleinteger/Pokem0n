@@ -1,22 +1,14 @@
-<div id='play_area'>
- <br>
-  Question:
-  <br>
-  <%= text_area_tag :question_ro, @current_card.question, size: '45x15', readonly: 'true' %> 
-  <br>
-  <br>
+  <%= text_area_tag :question_ro, @current_card.question, readonly: 'true' %> 
+  
   <%= render 'form' %>
 
-<div class="show_outside_answer">
-    Answer
+  <div class="show_outside_answer">
+    Touch Me 
     <div class="show_inside"> 
-      <%= text_area_tag :question_ro, @current_card.answer, size: '45x15', readonly: 'true' %> 
+      <%= text_area_tag :question_ro, @current_card.answer, readonly: 'true' %> 
     </div>
   </div>
 
-
-<br>
 <br>
 <%= link_to 'Back', user_root_path %>
 <%= link_to 'Edit', edit_deck_card_path(@current_deck.id,@current_card.id, view: 'play', past_card_id: @past_card_id) %>
-</div>
