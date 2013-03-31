@@ -9,6 +9,7 @@ Pokem0n::Application.routes.draw do
   namespace :user do
     root :to => "users#show"
   end
+
   resources :decks, only: [:index, :new, :create ,:edit, :update, :destroy] do
     resources :cards, only: [:new, :create, :edit, :update, :destroy] do
       get 'game/play' => 'game#play'
