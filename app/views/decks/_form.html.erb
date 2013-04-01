@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :Deck_Name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, autofocus: 'true'%>
 
     <!--used for starting the first card select -->
     <%= f.hidden_field :time , :value => @current_deck.id.generation_time.to_i  %>
