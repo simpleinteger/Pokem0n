@@ -29,7 +29,7 @@ class GameController < ApplicationController
 
     respond_to do |format|
      # if answer submitted answer is correct
-      if @current_card.answer == params[:reply][:answer]
+      if @current_card.answer.gsub(/\s+/,"").downcase == params[:reply][:answer].gsub(/\s+/,"").downcase
 
        next_card_index = @current_card_index+1
 
