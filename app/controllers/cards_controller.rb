@@ -31,7 +31,7 @@ class CardsController < ApplicationController
     @current_deck = Deck.find(params[:deck_id])
     @current_card = @current_deck.cards.find(params[:id])
     @past_view = params[:view]
-    @past_card_id = params[:past_card_id]
+    @current_card_index = params[:current_card_index]
   end
 
   # PUT /cards/1
@@ -45,7 +45,7 @@ class CardsController < ApplicationController
 
         # determine where to redirect to the play area or the create cards area
         if params[:addon][:past_view] == "play" 
-          format.html { redirect_to deck_card_game_play_path(@current_deck,params[:addon][:past_card_id]), notice: 'Card Updated' }
+          format.html { redirect_to deck_card_game_play_path(@current_deck,params[:addon][:current_card_index]), notice: 'Card Updated' }
         else
           format.html { redirect_to new_deck_card_path(@current_deck), notice: 'Card Updated' }
         end

@@ -12,10 +12,10 @@
 <br>
 <br>
 </div>
-<% @card_list.reverse_each do |card| %>
+<% @card_list.each_with_index do |card, index| %>
   <%= link_to 'Edit', edit_deck_card_path(@current_deck.id, card.id) %>
   <%= link_to 'Destroy', deck_card_path(@current_deck.id, card.id), method: :delete %> 
-  <%= link_to 'Play', deck_card_game_play_path(@current_deck.id, card.id) %>
+  <%= link_to 'Play', deck_card_game_play_path(@current_deck.id, index) %>
   <%= "Question: #{card.question} =>  Answer: #{card.answer}  " %>
 <br>
 <% end %>

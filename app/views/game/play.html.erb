@@ -11,4 +11,4 @@
 
 <br>
 <%= link_to 'Back', user_root_path %>
-<%= link_to 'Edit', edit_deck_card_path(@current_deck.id,@current_card.id, view: 'play', past_card_id: @past_card_id) %>
+<%= link_to 'Edit', edit_deck_card_path(@current_deck.id,@current_card.id, view: 'play', current_card_index: @current_card_index) %>
