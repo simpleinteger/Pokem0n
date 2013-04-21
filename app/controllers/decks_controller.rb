@@ -42,13 +42,12 @@ class DecksController < ApplicationController
   end
 
   # PUT /decks/:id
-  # update the deck name
+  # update the deck nam
   # redirects to index page 
   def update
     @current_deck = Deck.find(params[:id])
-
     respond_to do |format|
-      if @current_deck.update_attribute(:name, params[:deck][:name])
+      if @current_deck.update_attributes(params[:deck])
         format.html { redirect_to user_root_path, notice: 'Deck Name Updated!' }
       else
         format.html { render action: "update" }
@@ -67,4 +66,26 @@ class DecksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # fork deck
+  def fork
+   @current_user = User.find(current_user.id) 
+   @orginal_deck = Deck.find(params[:deck_id]) 
+   
+   @copy_deck = @orginal_deck.clone
+
+   @forked_deck = @current_user.decks.new
+
+   @forked_deck = @copy_deck
+
+   @forked_deck.user_id = @current_user.id
+
+   @forked_deck.save
+
+    respond_to do |format|
+      format.html { redirect_to user_root_path, notice: "#{@orginal_deck.name} forked" }
+      format.json { head :no_content }
+    end
+
+  end 
 end

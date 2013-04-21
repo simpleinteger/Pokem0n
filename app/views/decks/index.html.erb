@@ -5,14 +5,9 @@
 <table>
 <% @decks.each do |deck| %>
   <tr>
-
       <td><%= deck.name %></td>
-        <td><%= link_to 'Add Cards', new_deck_card_path(deck.id) %></td>
-        <td><%= link_to 'Edit Name', edit_deck_path(deck) %></td>
-        <td><%= link_to 'Destroy', deck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Play', deck_card_game_play_path(deck.id,'7c55f2000000000000000000') %></td>
-        <td><%= link_to 'History', deck_game_history_path(deck.id) %></td>
-        <td> last duration: <%= p deck.plts.last.duration if deck.plts.last != nil %> min </td>
+
+        <td><%= link_to 'Fork Deck', forkDeck_path(deck.id) %></td>
 
   </tr>
 <% end %>
@@ -20,5 +15,5 @@
 
 <br />
 
-<%= link_to 'New Deck', new_deck_path %>
+<%= link_to 'Back', user_root_path %>
 <div>

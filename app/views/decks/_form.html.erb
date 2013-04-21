@@ -15,8 +15,14 @@
     <%= f.label :Deck_Name %><br />
     <%= f.text_field :name, autofocus: 'true'%>
 
+    <%= f.label :White_Space_Front %><br />
+    <%= f.check_box :setting_whitespace %>
+
+    <%= f.label :Case_Sensative %><br />
+    <%= f.check_box :setting_case_sensitive %>
+
     <!--used for starting the first card select -->
-    <%= f.hidden_field :time , :value => @current_deck.id.generation_time.to_i  %>
+    <!-- f.hidden_field :time , :value => @current_deck.id.generation_time.to_i  %> -->
   </div>
   <div class="actions">
     <%= f.submit %>

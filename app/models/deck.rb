@@ -3,6 +3,8 @@ class Deck
 
   # Fields
   field :n, as: :name, type: String
+  field :swf, as: :setting_whitespace, type: Boolean 
+  field :scs, as: :setting_case_sensitive, type: Boolean 
 
   # Association
   embeds_many :cards
@@ -11,7 +13,7 @@ class Deck
 
 
   # Security
-  attr_accessible :name
+  attr_accessible :name, :setting_whitespace, :setting_case_sensitive
 
   # Assocation options
   accepts_nested_attributes_for :cards

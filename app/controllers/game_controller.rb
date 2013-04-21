@@ -26,10 +26,24 @@ class GameController < ApplicationController
     @current_deck = Deck.find(params[:deck_id])
     @current_card_index = params[:card_id].to_i
     @current_card = @current_deck.cards[@current_card_index]
+    
+    @answer = @current_card.answer
+    @answer_submitted = params[:reply][:answer]
 
     respond_to do |format|
      # if answer submitted answer is correct
-      if @current_card.answer.gsub(/\s+/,"").downcase == params[:reply][:answer].gsub(/\s+/,"").downcase
+
+     if @current_deck.setting_whitespace
+        @answer = @answer.gsub(/\s+/,"") 
+        @answer_submitted = @answer_submitted.gsub(/\s+/,"")
+     end
+
+     if @current_deck.setting_case_sensitive
+        @answer = @answer.downcase 
+        @answer_submitted = @answer_submitted.downcase
+     end
+                
+      if @answer_submitted.eql?(@answer)
 
        next_card_index = @current_card_index+1
 

@@ -1,5 +1,8 @@
 Pokem0n::Application.routes.draw do
-  devise_for :users do
+  # user routes
+  devise_for :users
+
+  devise_scope :users do
      get 'user', :to => 'users#show', :as => :user_root
   end
 
@@ -8,6 +11,11 @@ Pokem0n::Application.routes.draw do
 
   root to: 'base#home'
 
+  # decks sharing routes
+  get 'sharedDecks' => 'decks#index'
+  get 'forkDeck/:deck_id' => 'decks#fork', :as => :forkDeck
+  
+  # deck/cards routes
   resources :decks, only: [:index, :new, :create ,:edit, :update, :destroy] do
     resources :cards, only: [:new, :create, :edit, :update, :destroy] do
       get 'game/play/' => 'game#play'
