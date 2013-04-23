@@ -60,7 +60,6 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'thin'
 end
 
 group :test do
