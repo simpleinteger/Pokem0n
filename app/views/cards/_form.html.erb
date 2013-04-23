@@ -1,9 +1,3 @@
-<script>
-$(document).ready(function(){
-    $('textarea').autosize();   
-};
-</script>
-
 <%= form_for [@current_deck, @current_card] do |f| %>
   <% if @current_card.errors.any? %>
     <div id="error_explanation">
