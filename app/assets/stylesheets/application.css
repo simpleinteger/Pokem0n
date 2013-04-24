@@ -23,3 +23,6 @@ body{
 table{ 
   margin: auto;
 }
+textarea{ 
+  resize: none;
+}

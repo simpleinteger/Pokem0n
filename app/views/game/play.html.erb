@@ -2,12 +2,8 @@
   
   <%= render 'form' %>
 
-  <div class="show_outside_answer">
-    Touch Me 
-    <div class="show_inside"> 
-      <%= text_area_tag :question_ro, @current_card.answer, readonly: 'true' %> 
-    </div>
-  </div>
+  <%= button_tag 'Show Answer', id: "toggle_button" %>
+      <%= text_area_tag :question_ro, @current_card.answer, readonly: 'true', id: "toggle_answer" %> 
 
 <br>
 <%= link_to 'Back', user_root_path %>
