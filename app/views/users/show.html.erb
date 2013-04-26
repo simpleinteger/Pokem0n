@@ -11,7 +11,7 @@
         <td><%= link_to 'Edit', edit_deck_path(deck) %>&there4; </td>
         <td><%= link_to 'Study', deck_card_game_study_path(deck.id,0) %>&there4; </td>
         <td><%= link_to 'Quiz', deck_card_game_play_path(deck.id,0) %>&there4; </td>
-        <td><%= link_to 'History', deck_game_history_path(deck.id) %> </td>
+        <td><%= link_to 'History', deck_game_history_path(deck.id) %> &there4; </td>
         <td><%= link_to 'Annihilate', deck, method: :delete, data: { confirm: 'Are you sure?' } %>&there4;  </td>
         <td> Time: <%= p deck.plts.last.duration if deck.plts.last != nil %> min </td>
     </tr> 
