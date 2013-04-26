@@ -1,0 +1,21 @@
+  <%= text_area_tag :question_ro, @current_card.question, readonly: 'true' %> 
+    
+   <%= text_area_tag :question_ro, @current_card.answer, readonly: 'true' %> 
+
+   <br>
+   <%= link_to 'Next', deck_card_game_study_next_path(@current_deck.id,@current_card_index) %>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+   <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <%= link_to 'Back', user_root_path %>
+        <%= link_to 'Edit', edit_deck_card_path(@current_deck.id,@current_card.id, view: 'play', current_card_index: @current_card_index) %>
+

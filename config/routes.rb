@@ -19,6 +19,8 @@ Pokem0n::Application.routes.draw do
   resources :decks, only: [:index, :new, :create ,:edit, :update, :destroy] do
     resources :cards, only: [:new, :create, :edit, :update, :destroy] do
       get 'game/play/' => 'game#play'
+      get 'game/study/' => 'game#study'
+      get 'game/study_next/' => 'game#study_next'
       post 'game/check_answer' => 'game#check_answer'
     end
 
